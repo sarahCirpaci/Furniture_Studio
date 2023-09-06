@@ -1,0 +1,58 @@
+<div *ngIf="(cartItems$ | async) as cartItems" class="px-lg-5 px-md-0">
+  <div class="row">
+    <div class="col-md-12" *ngFor="let cartItem of cartItems">
+      <div class="d-flex align-items-center mb-4">
+        <div class="mr-3">
+          <img [src]="cartItem?.product?.image_url" alt="imagine" [width]="150" [height]="200"/>
+        </div>
+        <div class="flex-grow-1 mx-3">
+          <h6>{{ cartItem?.product?.name }}</h6>
+          <p>{{ cartItem?.product?.price | number }} {{ GLOBAL_CONSTANTS.currency }}</p>
+        </div>
+        <div class="align-items-center">
+          <p class="item-price mb-1">
+            {{ (((cartItem?.product?.price) ?? 0) * cartItem.quantity) | number }} {{ GLOBAL_CONSTANTS.currency }}
+          </p>
+          <div>
+            <button
+              type="button"
+              (click)="decreaseQuantityForCartItem(cartItem?.product?.id)"
+              class="btn btn-sm btn-outline-secondary mx-1">-
+            </button>
+            <span class="item-quantity">{{ cartItem.quantity }}</span>
+            <button
+              type="button"
+              (click)="increaseQuantityForCartItem(cartItem.product.id)"
+              class="btn btn-sm btn-outline-secondary mx-1">+
+            </button>
+          </div>
+          <button
+            (click)="removeItemFromCart(cartItem?.product?.id)"
+            mat-raised-button color="warn" class="mt-2">Remove
+          </button>
+        </div>
+      </div>
+      <mat-divider class="mb-2"></mat-divider>
+    </div>
+  </div>
+  <div *ngIf="cartItems.length > 0; else elseBlock">
+    <div class="text-end mt-3">
+      <h6>
+        Total cart price : {{totalPrice$ | async | number}} {{GLOBAL_CONSTANTS.currency}}
+      </h6>
+    </div>
+    <div class="text-end mt-3">
+      <button
+        routerLink="/{{routes.CHECKOUT_PAGE}}"
+        mat-raised-button color="primary">Continue
+      </button>
+    </div>
+  </div>
+  <ng-template #elseBlock>
+    <div class="text-center pt-5">
+      <img src="https://cdn-icons-png.flaticon.com/512/4555/4555971.png" alt="empty-cart" [width]="300" [height]="300"><br>
+      <h5 class="pt-5">No items in the cart</h5>
+    </div>
+  </ng-template>
+
+</div>

@@ -1,0 +1,53 @@
+<mat-toolbar class="bg-transparent">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <a style="cursor:pointer" class="mx-3"><img [width]="70" [height]="70"
+                                                src="/assets/images/logo.png"
+                                                routerLink="/{{routes.LANDING_PAGE}}" alt="logo">
+    </a>
+    <div style="margin-right: 1.15rem; cursor: pointer" class="d-flex align-items-center">
+      <div *ngIf="(user$ | async); else elseBlock">
+        <button
+          mat-mini-fab color="primary" [matMenuTriggerFor]="userMenu">
+          <mat-icon>person</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu" class="dropdown-menu">
+          <button
+            routerLink="{{routes.MY_ACCOUNT}}"
+            mat-menu-item class="dropdown-item">
+            <mat-icon>person</mat-icon>
+            <span>My Account</span>
+          </button>
+          <button mat-menu-item class="dropdown-item" (click)="handleLogout(); $event.stopPropagation()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </div>
+      <ng-template #elseBlock>
+        <button
+          routerLink="{{routes.LOGIN}}"
+          mat-raised-button color="primary">
+          Authentication
+        </button>
+      </ng-template>
+      <button mat-mini-fab color="primary" class="ms-3">
+        <div class="cart" routerLink="{{routes.CART_PAGE}}">
+          <span class="count">{{cartQuantity$ | async}}</span>
+          <mat-icon>shopping_cart</mat-icon>
+        </div>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>
+<mat-toolbar color="primary" style="height:50px">
+  <div class="container-fluid d-flex align-items-center">
+    <div *ngFor="let category of (productCategories$ | async)">
+      <button
+        routerLink="{{routes.PRODUCTS_PAGE+'/1/'+category.id}}"
+        (click)="$event.stopPropagation()" mat-raised-button class="shadow-none text-light w-100"
+        color="primary">
+        <h4 class="mt-2">{{category.name}}</h4>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>

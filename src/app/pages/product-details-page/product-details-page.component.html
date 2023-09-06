@@ -1,0 +1,35 @@
+<div *ngIf="product; else loadingState" class="text-center product-detail-container">
+  <h5 class="product-title">{{product.name}}</h5>
+  <img [width]="350" [height]="350" [src]="product.image_url" alt="Product Image" class="product-image">
+  <div class="pt-4">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Details:</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="product-description">
+          <p class="product-details-text">{{product.description}}</p>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Material:</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="product-material">
+          <p class="product-details-text">{{product.material}}</p>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <h6 class="product-price">Price {{product.price}} {{GLOBAL_CONSTANTS.currency}}</h6>
+  <button mat-raised-button color="primary"
+          (click)="addToCart(product)" class="mb-2">Add to cart
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<ng-template #loadingState>
+  <div class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

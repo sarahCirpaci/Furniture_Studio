@@ -1,0 +1,39 @@
+.product-detail-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.product-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.product-image {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.product-description {
+  margin-top: 20px;
+}
+
+.product-details-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+}
+
+.product-details-text {
+  color: #777;
+  line-height: 1.6;
+}
+
+.product-price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2D232E;
+  margin-top: 20px;
+}

@@ -1,0 +1,260 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+// Modify the primary color (#E0DDCF) for all shades
+$primary-color: #2D232E;
+
+// Modify the accent color (#2D232E) for all shades
+$accent-color: #E0DDCF;
+
+$furniture-primary: (
+  50   : mix(#ffffff, $primary-color, 90%),
+  100  : mix(#ffffff, $primary-color, 70%),
+  200  : mix(#ffffff, $primary-color, 50%),
+  300  : mix(#ffffff, $primary-color, 30%),
+  400  : mix(#ffffff, $primary-color, 10%),
+  500  : $primary-color,
+  600  : mix(#000000, $primary-color, 10%),
+  700  : mix(#000000, $primary-color, 30%),
+  800  : mix(#000000, $primary-color, 50%),
+  900  : mix(#000000, $primary-color, 70%),
+  A100 : mix(#ffffff, $primary-color, 50%),
+  A200 : mix(#ffffff, $primary-color, 30%),
+  A400 : mix(#ffffff, $primary-color, 10%),
+  A700 : mix(#000000, $primary-color, 20%),
+  contrast: (
+    50   : #000000,
+    100  : #000000,
+    200  : #000000,
+    300  : #000000,
+    400  : #000000,
+    500  : #000000,
+    600  : #ffffff,
+    700  : #ffffff,
+    800  : #ffffff,
+    900  : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$furniture-accent: (
+  50   : mix(#ffffff, $accent-color, 90%),
+  100  : mix(#ffffff, $accent-color, 70%),
+  200  : mix(#ffffff, $accent-color, 50%),
+  300  : mix(#ffffff, $accent-color, 30%),
+  400  : mix(#ffffff, $accent-color, 10%),
+  500  : $accent-color,
+  600  : mix(#000000, $accent-color, 10%),
+  700  : mix(#000000, $accent-color, 30%),
+  800  : mix(#000000, $accent-color, 50%),
+  900  : mix(#000000, $accent-color, 70%),
+  A100 : mix(#ffffff, $accent-color, 50%),
+  A200 : mix(#ffffff, $accent-color, 30%),
+  A400 : mix(#ffffff, $accent-color, 10%),
+  A700 : mix(#000000, $accent-color, 20%),
+  contrast: (
+    50   : #000000,
+    100  : #000000,
+    200  : #000000,
+    300  : #000000,
+    400  : #000000,
+    500  : #ffffff,
+    600  : #ffffff,
+    700  : #ffffff,
+    800  : #ffffff,
+    900  : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$furniture-fe-primary: mat.define-palette($furniture-primary);
+$furniture-fe-accent: mat.define-palette($furniture-accent);
+
+// The warn palette is optional (defaults to red).
+$furniture-fe-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$furniture-fe-theme: mat.define-light-theme((
+  color: (
+    primary: $furniture-fe-primary,
+    accent: $furniture-fe-accent,
+    warn: $furniture-fe-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($furniture-fe-theme);
+
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  box-sizing: border-box;
+  background-color: #ffffff
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+
+  &:hover {
+    color: inherit;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.snackbar-success {
+  --mdc-snackbar-supporting-text-color: white;
+  --mat-mdc-snack-bar-button-color: #45a41e;
+}
+
+.snackbar-error {
+  --mat-mdc-snack-bar-button-color: #f44336;
+  --mdc-snackbar-supporting-text-color: white;
+}
+
+.mat-bg-primary {
+  background-color: map-get($furniture-fe-primary, 500) !important
+}
+
+.mat-bg-accent {
+  background-color: map-get($furniture-fe-accent, 500) !important
+}
+
+.mat-bg-warn {
+  background-color: map-get($furniture-fe-warn, 500) !important
+}
+
+.mat-bg-gray {
+  background-color: map-get($furniture-fe-accent, 50) !important
+}
+
+.mat-text-primary {
+  color: map-get($furniture-fe-primary, 500) !important
+}
+
+.mat-text-accent {
+  color: map-get($furniture-fe-accent, 500) !important
+}
+
+.mat-text-warn {
+  color: map-get($furniture-fe-warn, 500) !important
+}
+
+/*** ADDING NO-WRAP FOR TABLE ***/
+td {
+  white-space: nowrap;
+}
+
+th {
+  white-space: nowrap;
+}
+
+.mat-horizontal-stepper-header-container {
+  margin-bottom: 20px;
+}
+
+.mat-mdc-menu-panel.mat-mdc-menu-panel {
+  max-width: none !important;
+}
+
+.text-max-width-800-and-word-wrap {
+  white-space: pre-line;
+  width: 800px;
+  word-wrap: break-word
+}
+
+/*** CUSTOM COL ***/
+.col-1-and-half {
+  flex: 0 0 auto;
+  width: 12.5%;
+}
+
+/*** MEDIA QUERY FOR CUSTOM COL ***/
+@media (min-width: 1400px) {
+  .col-xxl-1-and-half {
+    flex: 0 0 auto;
+    width: 12.5%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .col-xl-1-and-half {
+    flex: 0 0 auto;
+    width: 12.5%;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-lg-1-and-half {
+    flex: 0 0 auto;
+    width: 12.5%;
+  }
+}
+
+@media (min-width: 768px) {
+  .col-md-1-and-half {
+    flex: 0 0 auto;
+    width: 12.5%;
+  }
+
+}
+
+@media (min-width: 576px) {
+  .col-sm-1-and-half {
+    flex: 0 0 auto;
+    width: 12.5%;
+  }
+}
+
+/*** MAT DIALOG OVERRIDE ***/
+.mdc-dialog__title {
+  font-size: var(--mdc-dialog-subhead-size, 16px) !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__title {
+  font-family: var(--mdc-dialog-subhead-font, "Roboto") !important;
+}
+
+/*** SPINNER CONTAINER ***/
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.row{
+  margin:0
+}

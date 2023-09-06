@@ -1,0 +1,38 @@
+<div class="px-4 pb-4">
+  <div class="search-product-label align-items-center d-flex">
+    <mat-icon color="primary">search</mat-icon>
+    <input type="text" placeholder="Search Product" [(ngModel)]="searchString"
+           (keydown.enter)="searchProduct(searchString)">
+  </div>
+</div>
+
+<div *ngIf="productsPaginated$ | async as productsPaginated; else loadingState">
+  <div class="row px-4 py-2 g-4">
+    <div class="col-lg-4 col-md-6" *ngFor="let product of productsPaginated.productList">
+      <mat-card>
+        <div style="cursor:pointer"
+             routerLink="/{{routes.PRODUCT_DETAILS_PAGE+'/'+product.id}}">
+          <mat-card-title class="d-flex justify-content-center mt-2"><h6>{{product.name}}</h6></mat-card-title>
+          <!-- Center the image using flexbox -->
+          <div class="d-flex justify-content-center">
+            <img mat-card-image class="card-image" [src]="product.image_url" alt="imagine"/>
+          </div>
+        </div>
+        <mat-card-footer class="d-flex flex-column align-items-center">
+          <p class="mb-2">{{product.price | number}} {{GLOBAL_CONSTANTS.currency}}</p>
+          <button mat-raised-button color="primary"
+                  (click)="addToCart(product)" class="mb-2" style="width:95%">Add to cart
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+  <app-paginator [pageInfo]="pageInfo" (pageEvent)="changePage($event)">
+  </app-paginator>
+</div>
+<ng-template #loadingState>
+  <div class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

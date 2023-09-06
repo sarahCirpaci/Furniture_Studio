@@ -1,0 +1,7 @@
+<mat-paginator (page)="handlePageEvent($event)"
+               [pageIndex]="pageInfo.currentPage - 1"
+               [length]="pageInfo.size"
+               [pageSize]="pageInfo.numberOfItems"
+               hidePageSize="true"
+               aria-label="Select page">
+</mat-paginator>

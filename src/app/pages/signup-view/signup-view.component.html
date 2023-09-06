@@ -1,0 +1,40 @@
+<mat-card>
+  <img class="mx-2" alt="logo" mat-card-image [width]="200" [height]="200"
+       src="/assets/images/logo.png"/>
+  <mat-card-title id="title" class="d-flex justify-content-center mat-text-primary fw-bold mb-1">Register
+  </mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
+      <p>
+        <mat-form-field class="w-100">
+          <mat-label>Email</mat-label>
+          <input type="text" matInput formControlName="email" autocomplete="new-email">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="w-100">
+          <mat-label>Password</mat-label>
+          <input matInput type="text" formControlName="password" [type]="hidePassword ? 'password' : 'text'"
+                 autocomplete="new-password">
+          <button *ngIf="form.controls['password'].enabled" mat-icon-button matSuffix
+                  (click)="hidePassword = !hidePassword;$event.stopPropagation()" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hidePassword" type="button">
+            <mat-icon color="accent">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </p>
+      <div class="d-inline row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="isLoading" class="col-12 mb-2 float-end">
+          Register
+        </button>
+        <p routerLink="/{{routes.LOGIN}}"
+           class="m-0 text-center col-12"
+           style="font-size: 14px; cursor:pointer">Already have an account?<br> Authenticate here</p>
+      </div>
+      <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+
+

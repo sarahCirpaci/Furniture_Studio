@@ -1,0 +1,22 @@
+.paddings-for-checkout{
+  padding-left:30%;
+  padding-right:30%
+}
+
+@media (max-width: 1200px) {
+  .paddings-for-checkout{
+    padding-left:10%;
+    padding-right:10%;
+  }
+}
+@media (max-width: 767px) {
+  .paddings-for-checkout{
+    padding-left:0;
+    padding-right:0;
+  }
+}
+.summary-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

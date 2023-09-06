@@ -1,0 +1,30 @@
+
+
+<style>
+  .background-image {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('https://whitestudios.ru/images/content/img_9829.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .background-image h1 {
+    color: #ffffff;
+    font-size: 7rem;
+    margin: 0;
+  }
+
+  .explore-button {
+    margin-top: 1rem;
+  }
+</style>
+<div class="background-image">
+  <h1>Furniture studio</h1>
+  <button mat-raised-button  class="explore-button" routerLink="{{routes.PRODUCTS_PAGE+'/1/1'}}">Explore our products</button>
+</div>

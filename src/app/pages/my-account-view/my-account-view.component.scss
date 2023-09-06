@@ -1,0 +1,42 @@
+/* Custom CSS */
+
+/* Order card styles */
+.order-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-card h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.order-card p {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+/* Product item styles */
+.product-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.product-item p {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.product-item p strong {
+  font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .order-card {
+    margin-bottom: 20px;
+  }
+}
